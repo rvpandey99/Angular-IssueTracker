@@ -1,16 +1,24 @@
-<nav>
-  <a routerLink='/home'><h1>Issue Tracker</h1></a>
-  <ul>
-    <li>
-      <a routerLink='/home' routerLinkActive='active'>Home</a>
-    </li>
-    <li>
-      <a routerLink='/issues' routerLinkActive='active'>Issues</a>
-    </li>
-    <li>
-      <a routerLink='/addnew' routerLinkActive='active'>Add New</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+  <a class="navbar-brand" routerLink='/home'>Issue Tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/home' routerLinkActive='active'>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/issues' routerLinkActive='active'>Issues</a>
+      </li>
+      <!-- <li class="nav-item bg-primary align-right"> -->
+        <!-- <a class="nav-link btn btn-primary float-right" role="button" routerLink='/addnew' routerLinkActive='active'>Add New</a> -->
+      <!-- </li> -->
+    </ul>
+    <a class="nav-link btn btn-primary float-right" role="button" routerLink='/addnew' routerLinkActive='active'>Add New</a>
+  </div>
 </nav>
+<div  class="container">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
