@@ -13,3 +13,4 @@ export class AddnewComponent implements OnInit {
   }
 
 }
+
