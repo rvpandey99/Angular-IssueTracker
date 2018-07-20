@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AddnewComponent implements OnInit {
 
   constructor() { }
+  private date = new Date();
+  createdDate = this.date;
+  issueId = (this.date.getTime()).toString();
 
   ngOnInit() {
   }
