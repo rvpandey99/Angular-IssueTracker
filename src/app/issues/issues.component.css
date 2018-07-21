@@ -1,0 +1,12 @@
+.issues-container{
+    background-color: #E1D3F7;
+    padding: 30px 60px;
+    margin: 30px auto;
+    border-radius: 10px;
+}
+.delete{
+    background-color: white;
+}
+button{
+    width: 75px
+}

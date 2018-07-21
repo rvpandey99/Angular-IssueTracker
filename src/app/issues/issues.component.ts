@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocaljsonService } from '../localjson.service';
 
 @Component({
   selector: 'app-issues',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssuesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _localjsonService: LocaljsonService) { }
+  issues: any;
+  default: boolean;
 
   ngOnInit() {
+    this.issues = this._localjsonService.getJSON();
+    if (this.issues.length < 2) {
+      this.default = true;
+    } else {
+      this.default = false;
+    }
   }
 
 }
