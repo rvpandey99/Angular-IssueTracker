@@ -1,43 +1,75 @@
-<div class="form-container">
-  <form #addissue="ngForm" (ngSubmit)="addNew(addissue.value)">
-    <h4>Issue Id: {{issueId}}</h4>
-    <h4>Creation Date: {{createdDate}}</h4>
-    <div class="form-group mt-4">
-      <label for="description"><h4>Description:</h4></label>
-      <textarea class="form-control" name="description" #description rows="3"  ngModel></textarea>
+<form #addNewForm="ngForm" (ngSubmit)="addNew(addNewForm.value)">
+  <div class="card card-primary mt-4">
+    <div class="card-header text-white" style="background-color: #563D7C">
+      <h5>Raise New Issue</h5>
     </div>
-    <div>
-      <div class="severity mt-3">
-        <h4>Severity Level:</h4>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="radios" id="radios1" value="Minor" checked ngModel>
-          <label class="form-check-label" for="radios1">Minor</label>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="IssueId">Issue ID</label>
+          <input class="form-control" id="IssueId" name="Id" type="text" readonly [(ngModel)]="issueId" >
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="radios" id="radios2" value="Major" ngModel>
-          <label class="form-check-label" for="radios2">Major</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="radios" id="radios3" value="Critical" ngModel>
-          <label class="form-check-label" for="radios3">Critical</label>
+
+        <div class="form-group col-md-6">
+          <label for="cd">Created Date</label>
+          <input class="form-control" id="cd" name="CreatedDate" type="text" readonly [(ngModel)]="createdDate">
         </div>
       </div>
-      <div class="status mt-3">
-        <h4>Status:</h4>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="statusradios" id="statusradios1" value="Open" checked ngModel>
-          <label class="form-check-label" for="statusradios1">Open</label>
+
+      <div class="form-group">
+        <label for="des">Description</label>
+        <textarea class="form-control" id="des" required name="Description" type="text" ngModel rows="3"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="sev">Severity Level</label>
+          <div class="form-control" id="sev">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sev1" name="Severity" value="Minor" [(ngModel)]="severity">
+              <label for="sev1" class="form-check-label">Minor</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sev2" name="Severity" value="Major" [(ngModel)]="severity">
+              <label for="sev2" class="form-check-label">Major</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sev3" name="Severity" value="Critical" [(ngModel)]="severity">
+              <label for="sev3" class="form-check-label">Critical</label>
+            </div>
+          </div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="statusradios" id="statusradios2" value="In Progress" ngModel>
-          <label class="form-check-label" for="statusradios2">In Progress</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="statusradios" id="statusradios3" value="Closed" ngModel>
-          <label class="form-check-label" for="statusradios3">Closed</label>
+
+        <div class="form-group col-md-6">
+          <label for="sta">Status</label>
+          <div class="form-control" id="sta">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sta1" name="Status" value="Open" [(ngModel)]="status">
+              <label for="sta1" class="form-check-label">Open</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sta2" name="Status" value="In Progress" [(ngModel)]="status">
+              <label for="sta2" class="form-check-label">In Progress</label>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sta3" name="Status" value="Resolved" [(ngModel)]="status">
+              <label for="sta3" class="form-check-label">Resolved</label>
+            </div>
+            <div class="form-group mt-3" *ngIf='status == "Resolved"'>
+                <label for="res">Resolved Date</label>
+                <input class="form-control" id="res" name="ResolvedDate" required type="date" ngModel>
+              </div>
+          </div>
         </div>
       </div>
-      <input type="submit" class="btn btn-primary mt-4" value="Submit">
     </div>
-  </form>
-</div>
+    <div class="card-footer">
+      <input class="btn btn-primary" type="submit" value="Save">
+    </div>
+  </div>
+</form>

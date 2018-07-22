@@ -9,11 +9,12 @@
           <li class="list-group-item"><strong>Description: </strong>{{issue.Description}}</li>
           <li class="list-group-item"><strong>Severity: </strong>{{issue.Severity}}</li>
           <li class="list-group-item"><strong>Status: </strong>{{issue.Status}}</li>
+          <li class="list-group-item" *ngIf='issue.Status == "Resolved"'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</li>
         </ul>
       </div>
       <div class="col-md-1">
-        <button type="button" class="btn btn-warning mt-3 mr-1">Update</button> 
-        <button type="button"  class="btn btn-danger mt-3 mr-1">Delete</button>
+        <button type="button" class="btn btn-warning mt-1 mr-1">Update</button> 
+        <button type="button"  class="btn btn-danger mt-1 mr-1">Delete</button>
       </div>
     </div>
   </div>

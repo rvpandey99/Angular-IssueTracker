@@ -13,16 +13,17 @@ export class AddnewComponent implements OnInit {
   constructor(private _localjsonService: LocaljsonService) {
   }
   issues: any;
-
+  status = 'Open';
+  severity = 'Minor';
   addNew(data: any) {
-    const issueObj = {
-        Id: this.issueId,
-        CreatedDate: this.createdDate,
-        Description: data.description,
-        Severity: data.radios,
-        Status: data.statusradios
-    };
-    this.issues.push(issueObj);
+    // const issueObj = {
+    //     Id: data.Id,
+    //     CreatedDate: data.CreatedDate,
+    //     Description: data.Description,
+    //     Severity: data.Severity,
+    //     Status: data.Status
+    // };
+    this.issues.push(data);
     this._localjsonService.setJSON(this.issues);
     alert('You have added a new issue. Please note down the issue id: ' + this.issueId);
   }
