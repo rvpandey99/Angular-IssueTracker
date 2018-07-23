@@ -12,6 +12,8 @@ export class IssuesComponent implements OnInit {
   constructor(private _localjsonService: LocaljsonService, private _router: Router) { }
   issues: any;
   default: boolean;
+  upd8 = false;
+  uid: any;
 
   ngOnInit() {
     this.issues = this._localjsonService.getJSON();
@@ -20,6 +22,11 @@ export class IssuesComponent implements OnInit {
     } else {
       this.default = false;
     }
+  }
+
+  update(id: any) {
+    this.upd8 = true;
+    this.uid = id;
   }
 
   delete(id: any) {

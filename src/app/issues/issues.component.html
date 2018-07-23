@@ -1,43 +1,35 @@
 <h3 *ngIf="default" style="text-align: center">There is nothing to show. Please raise issue by clicking "Add New" button.</h3>
 
-<div *ngFor="let issue of issues" class="mt-3">
-  <div  class="card"  *ngIf="issue.Id != 0">
-    <div class="card-header" style="background-color: #563D7C">
-      <div class="row">
-        <div class="col-md-8">
-          <strong class="nav-link text-white">Issue ID: {{issue.Id}}</strong>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="nav-link btn text-white btn-primary float-right">Update</button>
-        </div>
-        <div class="col-md-2">
-          <button type="button" (click)="delete(issue.Id)" class="nav-link btn btn-danger float-right">Delete</button>
+<app-update (upevent)="upd8=$event" *ngIf="upd8" [ID]="uid"></app-update>
+
+<div  *ngIf="!upd8">
+  <div *ngFor="let issue of issues" class="mt-3">
+    <div  class="card"  *ngIf="issue.Id != 0">
+
+      <div class="card-header" style="background-color: #563D7C">
+        <div class="row">
+          <div class="col-md-8">
+            <strong class="nav-link text-white">Issue ID: {{issue.Id}}</strong>
+          </div>
+          <div class="col-md-2">
+            <button type="button" (click)="update(issue)" class="nav-link btn text-white btn-primary float-right">Update</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" (click)="delete(issue.Id)" class="nav-link btn btn-danger float-right">Delete</button>
+          </div>
         </div>
       </div>
+
+      <div class="card-body" style="background-color: #E1D3F7">
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Created Date: </strong>{{issue.CreatedDate}}</li>
+          <li class="list-group-item"><strong>Description: </strong>{{issue.Description}}</li>
+          <li class="list-group-item"><strong>Severity: </strong>{{issue.Severity}}</li>
+          <li class="list-group-item"><strong>Status: </strong>{{issue.Status}}</li>
+          <li class="list-group-item" *ngIf='issue.Status == "Resolved"'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</li>
+        </ul>
+      </div>
       
-      <!-- <strong>Issue ID: {{issue.Id}}</strong>
-      <button type="button" class="btn btn-warning">Update</button> 
-      <button type="button"  class="btn btn-danger">Delete</button> -->
-    </div>
-    <div class="card-body">
-      <ul class="list-group">
-        <li class="list-group-item"><strong>Created Date: </strong>{{issue.CreatedDate}}</li>
-        <li class="list-group-item"><strong>Description: </strong>{{issue.Description}}</li>
-        <li class="list-group-item"><strong>Severity: </strong>{{issue.Severity}}</li>
-        <li class="list-group-item"><strong>Status: </strong>{{issue.Status}}</li>
-        <li class="list-group-item" *ngIf='issue.Status == "Resolved"'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</li>
-      </ul>
-      <!-- <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6"><strong>Created Date: </strong>{{issue.CreatedDate}}</div>
-          <div class="col-md-6"><strong><strong>Severity: </strong>{{issue.Severity}}</div>
-        </div>
-        <div><strong>Description: </strong>{{issue.Description}}</div>
-        <div class="row">
-          <div class="col-md-6"><strong><strong>Status: </strong>{{issue.Status}}</div>
-          <div class="col-md-6" *ngIf='issue.Status == "Resolved"'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
