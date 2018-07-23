@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocaljsonService } from '../localjson.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-addnew',
@@ -8,24 +9,20 @@ import { LocaljsonService } from '../localjson.service';
 })
 export class AddnewComponent implements OnInit {
   date = new Date();
-  createdDate = this.date.toString();
-  issueId = (this.date.getTime()).toString();
-  constructor(private _localjsonService: LocaljsonService) {
+  public createdDate = this.date.toString();
+  public issueId = (this.date.getTime()).toString();
+  constructor(private _localjsonService: LocaljsonService, private _router: Router) {
   }
+  description: string;
+  newDate: any;
   issues: any;
   status = 'Open';
   severity = 'Minor';
   addNew(data: any) {
-    // const issueObj = {
-    //     Id: data.Id,
-    //     CreatedDate: data.CreatedDate,
-    //     Description: data.Description,
-    //     Severity: data.Severity,
-    //     Status: data.Status
-    // };
     this.issues.push(data);
     this._localjsonService.setJSON(this.issues);
     alert('You have added a new issue. Please note down the issue id: ' + this.issueId);
+    this._router.navigate(['issues']);
   }
 
   ngOnInit() {

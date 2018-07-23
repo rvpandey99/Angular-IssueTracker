@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocaljsonService } from '../localjson.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-issues',
@@ -8,7 +9,7 @@ import { LocaljsonService } from '../localjson.service';
 })
 export class IssuesComponent implements OnInit {
 
-  constructor(private _localjsonService: LocaljsonService) { }
+  constructor(private _localjsonService: LocaljsonService, private _router: Router) { }
   issues: any;
   default: boolean;
 
@@ -18,6 +19,19 @@ export class IssuesComponent implements OnInit {
       this.default = true;
     } else {
       this.default = false;
+    }
+  }
+
+  delete(id: any) {
+    for (let i = 1; i < this.issues.length; i++) {
+      if ( this.issues[i].Id === id ) {
+        this.issues.splice(i, 1);
+      }
+    }
+    this._localjsonService.setJSON(this.issues);
+    if (this.issues.length < 2) {
+      // this._router.navigate(['/issues']);
+      this.default = true;
     }
   }
 
