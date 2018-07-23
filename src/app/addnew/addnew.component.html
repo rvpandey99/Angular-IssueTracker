@@ -1,9 +1,9 @@
-<form #addNewForm="ngForm" (ngSubmit)="addNew(addNewForm.value)">
-  <div class="card card-primary mt-4">
+<form #addNewForm="ngForm" (ngSubmit)="addNew(addNewForm.value)" >
+  <div class="card card-primary mt-4  mb-4">
     <div class="card-header text-white" style="background-color: #563D7C">
       <h5>Raise New Issue</h5>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="background-color: #E1D3F7">
 
       <div class="row">
         <div class="form-group col-md-6">
@@ -18,8 +18,11 @@
       </div>
 
       <div class="form-group">
-        <label for="des">Description</label>
-        <textarea class="form-control" id="des" required name="Description" type="text" ngModel rows="3"></textarea>
+        <label for="des" [class.text-danger]="desc.invalid && desc.touched">Description **</label>
+        <textarea class="form-control form-control-label"  [class.is-invalid]="desc.invalid && desc.touched" id="des" required name="Description" type="text" [(ngModel)]="description" #desc="ngModel" rows="3"></textarea>
+        <div class="invalid-feedback" *ngIf="desc.invalid && desc.touched">
+          Please describe the issue. It is a Mandatory Field.
+        </div>
       </div>
 
       <div class="row">
@@ -61,15 +64,21 @@
               <label for="sta3" class="form-check-label">Resolved</label>
             </div>
             <div class="form-group mt-3" *ngIf='status == "Resolved"'>
-                <label for="res">Resolved Date</label>
-                <input class="form-control" id="res" name="ResolvedDate" required type="date" ngModel>
+              <label for="res" [class.text-danger]="resDate.invalid && resDate.touched">Resolved Date **</label>
+              <input class="form-control" [class.is-invalid]="resDate.invalid && resDate.touched" id="res" name="ResolvedDate" required type="date" [(ngModel)]="rd" #resDate="ngModel">
+              <div class="invalid-feedback" *ngIf="resDate.invalid && resDate.touched">
+                Please select Resolved Date. It is a Mandatory Field.
               </div>
+            </div>
           </div>
+        </div>
+        <div class="help-block text-muted ml-3">
+          ** Mandatory field.
         </div>
       </div>
     </div>
-    <div class="card-footer">
-      <input class="btn btn-primary" type="submit" value="Save">
+    <div class="card-footer" style="background-color: #563D7C">
+      <input class="btn btn-primary"  [disabled]="addNewForm.invalid" type="submit" value="Save">
     </div>
   </div>
 </form>
