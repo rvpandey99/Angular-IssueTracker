@@ -1,9 +1,84 @@
-<h3 *ngIf="default" style="text-align: center">There is nothing to show. Please raise issue by clicking "Add New" button.</h3>
+<h3 *ngIf="default" class="mt-5" style="text-align: center">There is nothing to show. Please raise issue by clicking "Add New" button.</h3>
 
 <app-update (upevent)="upd8=$event" *ngIf="upd8" [ID]="uid"></app-update>
 
 <div  *ngIf="!upd8">
-  <div *ngFor="let issue of issues" class="mt-3">
+  <div class="card-group">
+    <div class="card">
+      <div class="card-header bg-white">
+        <button class="btn btn-light" (click)="customtoggle()">Customise</button>
+      </div>
+      <div class="card-body" *ngIf="customClicked">
+        <form  #customForm="ngForm">
+          <h6 class="card-title align-right">Customise View</h6>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="item1" name="customitem" [(ngModel)]="isCD">
+              <label class="form-check-label" for="item1">Created Date</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="item2" name="customitem"  [(ngModel)]="isDes">
+              <label class="form-check-label" for="item2">Description</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="item3" name="customitem"  [(ngModel)]="isSeverity">
+              <label class="form-check-label" for="item3">Severity</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="item4" name="customitem"  [(ngModel)]="isStatus">
+              <label class="form-check-label" for="item4">Status</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="item5" name="customitem"  [(ngModel)]="isRD">
+              <label class="form-check-label" for="item5">Resolved Date</label>
+            </div>
+            <button type="submit" class="btn btn-light">Apply</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+    <div class="card text-right">
+      <div class="card-header bg-white">  <!-- style="opacity: 0.5" -->
+        <button class="btn btn-light" (click)="filtertoggle()">Filter</button>
+      </div>
+      <div class="card-body" *ngIf="filterClicked">
+        <h6 class="card-title align-right">Severity Filter</h6>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="sevfilter1" name="sevfilter" value="Minor">
+            <label class="form-check-label" for="sevfilter1">Minor</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="sevfilter2" name="sevfilter" value="Major">
+            <label class="form-check-label" for="sevfilter2">Major</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="sevfilter3" name="sevfilter" value="Critical">
+            <label class="form-check-label" for="sevfilter3">Critical</label>
+          </div>
+        </div>
+        <h6 class="card-title align-right">Status Filter</h6>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="stafilter1" name="stafilter" value="Open">
+            <label class="form-check-label" for="stafilter1">Open</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="stafilter2" name="stafilter" value="In Progress">
+            <label class="form-check-label" for="stafilter2">In Progress</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="stafilter3" name="stafilter" value="Resolved">
+            <label class="form-check-label" for="stafilter3">Resolved</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let issue of issues" class="mt-1">
     <div  class="card"  *ngIf="issue.Id != 0">
 
       <div class="card-header" style="background-color: #563D7C">

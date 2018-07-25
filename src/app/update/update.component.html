@@ -1,6 +1,6 @@
 
 <form #updateForm="ngForm" (ngSubmit)="update(updateForm.value)" >
-    <div class="card card-primary mt-3  mb-3">
+    <div class="card card-primary mt-1  mb-1">
       <div class="card-header text-white" style="background-color: #563D7C">
         <h5>Update Issue</h5>
       </div>
@@ -79,7 +79,7 @@
         </div>
       </div>
       <div class="card-footer" style="background-color: #563D7C">
-        <input class="btn btn-primary"  [disabled]="addNewForm.invalid" type="submit" value="Save">
+        <input class="btn btn-primary"  [disabled]="updateForm.invalid" type="submit" value="Save">
       </div>
     </div>
   </form>

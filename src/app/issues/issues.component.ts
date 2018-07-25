@@ -14,6 +14,8 @@ export class IssuesComponent implements OnInit {
   default: boolean;
   upd8 = false;
   uid: any;
+  customClicked = false;
+  filterClicked = false;
 
   ngOnInit() {
     this.issues = this._localjsonService.getJSON();
@@ -22,6 +24,14 @@ export class IssuesComponent implements OnInit {
     } else {
       this.default = false;
     }
+  }
+
+  customtoggle() {
+    this.customClicked = !this.customClicked;
+  }
+
+  filtertoggle() {
+    this.filterClicked = !this.filterClicked;
   }
 
   update(id: any) {
