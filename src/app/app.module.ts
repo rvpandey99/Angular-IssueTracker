@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { IssuesComponent } from './issues/issues.component';
 import { AddnewComponent } from './addnew/addnew.component';
 import { UpdateComponent } from './update/update.component';
-import { FilterComponent } from './filter/filter.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LocaljsonService } from './localjson.service';
 
@@ -19,7 +18,6 @@ import { LocaljsonService } from './localjson.service';
     IssuesComponent,
     AddnewComponent,
     UpdateComponent,
-    FilterComponent,
     NotfoundComponent
   ],
   imports: [
