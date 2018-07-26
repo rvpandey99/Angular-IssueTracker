@@ -17,6 +17,15 @@ export class IssuesComponent implements OnInit {
   customClicked = false;
   filterClicked = false;
 
+  isCD = true;
+  isDes = true;
+  isSeverity = true;
+  isStatus = true;
+  isRD = true;
+
+  stafilter = 'none';
+  sevfilter = 'none';
+
   ngOnInit() {
     this.issues = this._localjsonService.getJSON();
     if (this.issues.length < 2) {

@@ -32,7 +32,6 @@
               <input class="form-check-input" type="checkbox" id="item5" name="customitem"  [(ngModel)]="isRD">
               <label class="form-check-label" for="item5">Resolved Date</label>
             </div>
-            <button type="submit" class="btn btn-light">Apply</button>
           </div>
         </form>
         
@@ -44,42 +43,45 @@
         <button class="btn btn-light" (click)="filtertoggle()">Filter</button>
       </div>
       <div class="card-body" *ngIf="filterClicked">
-        <h6 class="card-title align-right">Severity Filter</h6>
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="sevfilter1" name="sevfilter" value="Minor">
-            <label class="form-check-label" for="sevfilter1">Minor</label>
+        <form  #filterForm="ngForm">
+          <h6 class="card-title align-right">Severity Filter</h6>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sevfilter1" name="sevfilter" value="Minor" [(ngModel)]="sevfilter">
+              <label class="form-check-label" for="sevfilter1">Minor</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sevfilter2" name="sevfilter" value="Major" [(ngModel)]="sevfilter">
+              <label class="form-check-label" for="sevfilter2">Major</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="sevfilter3" name="sevfilter" value="Critical" [(ngModel)]="sevfilter">
+              <label class="form-check-label" for="sevfilter3">Critical</label>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="sevfilter2" name="sevfilter" value="Major">
-            <label class="form-check-label" for="sevfilter2">Major</label>
+          <h6 class="card-title align-right">Status Filter</h6>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="stafilter1" name="stafilter" value="Open" [(ngModel)]="stafilter">
+              <label class="form-check-label" for="stafilter1">Open</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="stafilter2" name="stafilter" value="In Progress" [(ngModel)]="stafilter">
+              <label class="form-check-label" for="stafilter2">In Progress</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="stafilter3" name="stafilter" value="Resolved"  [(ngModel)]="stafilter">
+              <label class="form-check-label" for="stafilter3">Resolved</label>
+            </div>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="sevfilter3" name="sevfilter" value="Critical">
-            <label class="form-check-label" for="sevfilter3">Critical</label>
-          </div>
-        </div>
-        <h6 class="card-title align-right">Status Filter</h6>
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="stafilter1" name="stafilter" value="Open">
-            <label class="form-check-label" for="stafilter1">Open</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="stafilter2" name="stafilter" value="In Progress">
-            <label class="form-check-label" for="stafilter2">In Progress</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="stafilter3" name="stafilter" value="Resolved">
-            <label class="form-check-label" for="stafilter3">Resolved</label>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 
   <div *ngFor="let issue of issues" class="mt-1">
-    <div  class="card"  *ngIf="issue.Id != 0">
+    <div *ngIf="issue.Id != 0">
+      <div  class="card"  *ngIf="(issue.Severity == sevfilter  || sevfilter == 'none') && (issue.Status == stafilter || stafilter == 'none')">
 
       <div class="card-header" style="background-color: #563D7C">
         <div class="row">
@@ -97,14 +99,15 @@
 
       <div class="card-body" style="background-color: #E1D3F7">
         <ul class="list-group">
-          <li class="list-group-item"><strong>Created Date: </strong>{{issue.CreatedDate}}</li>
-          <li class="list-group-item"><strong>Description: </strong>{{issue.Description}}</li>
-          <li class="list-group-item"><strong>Severity: </strong>{{issue.Severity}}</li>
-          <li class="list-group-item"><strong>Status: </strong>{{issue.Status}}</li>
-          <li class="list-group-item" *ngIf='issue.Status == "Resolved"'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</li>
+          <li class="list-group-item" *ngIf="isCD"><strong>Created Date: </strong>{{issue.CreatedDate}}</li>
+          <li class="list-group-item" *ngIf="isDes"><strong>Description: </strong>{{issue.Description}}</li>
+          <li class="list-group-item" *ngIf="isSeverity"><strong>Severity: </strong>{{issue.Severity}}</li>
+          <li class="list-group-item" *ngIf="isStatus"><strong>Status: </strong>{{issue.Status}}</li>
+          <li class="list-group-item" *ngIf='issue.Status == "Resolved" && isRD'><strong>Resolved Date: </strong>{{issue.ResolvedDate}}</li>
         </ul>
       </div>
-      
     </div>
+    </div>
+    
   </div>
 </div>
